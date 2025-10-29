@@ -8,11 +8,9 @@ namespace FinalFP8
 {
     internal class Program
     {
-        string[,] vehiculo = new string[20, 20];
-        string[,] marca = new string[20, 20];
-        int[,] modelo = new int[20, 20];
-        string[,] placa = new string[20, 20];
-        string[,] año = new string[20, 20];
+        static string[,] vehiculo = new string[20, 4];
+        static int contadorVehiculos = 0;
+        
 
         static void Main(string[] args)
         {
@@ -81,7 +79,26 @@ namespace FinalFP8
             }
         }
 
+        static void registrarVehiculo()
+        {
+            
+            if (contadorVehiculos >= 20)
+            {
+                Console.WriteLine("Ingrese la placa del vehículo:");
+                vehiculo[contadorVehiculos, 0] = Console.ReadLine();
+                Console.WriteLine("Ingrese la marca del vehículo:");
+                vehiculo[contadorVehiculos, 1] = Console.ReadLine();
+                Console.WriteLine("Ingrese el modelo del vehículo:");
+                vehiculo[contadorVehiculos, 2] = Console.ReadLine();
+                Console.WriteLine("Ingrese el año del vehículo:");
+                vehiculo[contadorVehiculos, 3] = Console.ReadLine();
+                contadorVehiculos++;
+            }
+                   
+
+        }
         
+
 
 
         static void gestionarClientes()
