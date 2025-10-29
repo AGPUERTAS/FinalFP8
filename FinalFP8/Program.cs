@@ -2,16 +2,21 @@
 using System.Numerics;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Timers;
 
 namespace FinalFP8
 {
     internal class Program
     {
-        string[,] vehiculo =new string[20, 20];
-
+        string[,] vehiculo = new string[20, 20];
+        string[,] marca = new string[20, 20];
+        int[,] modelo = new int[20, 20];
+        string[,] placa = new string[20, 20];
+        string[,] año = new string[20, 20];
 
         static void Main(string[] args)
         {
+            
 
             menuPrincipal();
         }
@@ -54,7 +59,9 @@ namespace FinalFP8
 
         static void gestionarVehiculos()
         {
-            int respuesta = 0;
+            
+            char respuesta = ' ';
+            
 
             Console.WriteLine("Gestion de vehículos seleccionada.");
             Console.WriteLine("1. Registrar un nuevo vehículo (marca, modelo, placa, año)");
@@ -64,32 +71,18 @@ namespace FinalFP8
             Console.WriteLine("5. Ver vehículos de un cliente específico");
             Console.WriteLine("6. Salir de Gestión de vehículos (volver al Menú principal)");
 
-            respuesta = Convert.ToInt32(Console.ReadLine());
+            respuesta = Convert.ToChar(Console.ReadLine());
 
-            if (respuesta == 1)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    for (int j = 0; j < 2; j++)
-                    {
-                        Console.WriteLine("Ingrese la marca del vehículo:");
-                        string marca = Console.ReadLine();
-                        Console.WriteLine("Ingrese el modelo del vehículo:");
-                        string modelo = Console.ReadLine();
-                        Console.WriteLine("Ingrese la placa del vehículo:");
-                        string placa = Console.ReadLine();
-                        Console.WriteLine("Ingrese el año del vehículo:");
-                        string año = Console.ReadLine();
-                        // Aquí se debería guardar la información en una estructura de datos adecuada
-                        // Por simplicidad, solo mostramos la información ingresada
-                        Console.WriteLine($"Vehículo registrado: {marca} {modelo}, Placa: {placa}, Año: {año}");
-                    }
-                }
-                gestionarVehiculos();
+            switch (respuesta)
+            { 
+              case '1':
+                    
+                    break;
             }
-
-
         }
+
+        
+
 
         static void gestionarClientes()
         {
