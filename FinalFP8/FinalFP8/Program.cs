@@ -14,8 +14,6 @@ namespace FinalFP8
 
         static void Main(string[] args)
         {
-            
-
             menuPrincipal();
         }
 
@@ -60,7 +58,6 @@ namespace FinalFP8
             
             char respuesta = ' ';
             
-
             Console.WriteLine("Gestion de vehículos seleccionada.");
             Console.WriteLine("1. Registrar un nuevo vehículo (marca, modelo, placa, año)");
             Console.WriteLine("2. Ver lista de vehículos registrados");
@@ -74,30 +71,78 @@ namespace FinalFP8
             switch (respuesta)
             { 
               case '1':
-                    
+                    registrarVehiculo();
+                    break;
+              case '2':
+                    ListarVehiculos();
+                    break;
+               case '3':
+                    ModificarVehiculo();
                     break;
             }
         }
 
         static void registrarVehiculo()
         {
-            
-            if (contadorVehiculos >= 20)
+            Console.WriteLine("Registrar un nuevo vehículo seleccionado.");
+
+            for (int i = 0; i < 4; i++)
             {
-                Console.WriteLine("Ingrese la placa del vehículo:");
-                vehiculo[contadorVehiculos, 0] = Console.ReadLine();
-                Console.WriteLine("Ingrese la marca del vehículo:");
-                vehiculo[contadorVehiculos, 1] = Console.ReadLine();
-                Console.WriteLine("Ingrese el modelo del vehículo:");
-                vehiculo[contadorVehiculos, 2] = Console.ReadLine();
-                Console.WriteLine("Ingrese el año del vehículo:");
-                vehiculo[contadorVehiculos, 3] = Console.ReadLine();
-                contadorVehiculos++;
+                for (int j = 0; j < 20; j++)
+                {
+                    Console.WriteLine("Ingrese la placa del vehículo:");
+                    vehiculo[contadorVehiculos, 0] = Console.ReadLine();
+                    Console.WriteLine("Ingrese la marca del vehículo:");
+                    vehiculo[contadorVehiculos, 1] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el modelo del vehículo:");
+                    vehiculo[contadorVehiculos, 2] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el año del vehículo:");
+                    vehiculo[contadorVehiculos, 3] = Console.ReadLine();
+                    contadorVehiculos++;
+
+                    Console.WriteLine("Vehículo registrado exitosamente.");
+                    Console.WriteLine("¿Desea registrar otro vehículo? (s/n)");
+
+                    char respuesta = Convert.ToChar(Console.ReadLine());
+
+                    switch(respuesta)
+                    {
+                        case 's':
+                            registrarVehiculo();
+                            break;
+                        case 'n':
+                            gestionarVehiculos();
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Volviendo al menú de gestión de vehículos.");
+                            gestionarVehiculos();
+                            break;
+                    }
+                }
+                
             }
-                   
+
+            
 
         }
-        
+
+         static void ListarVehiculos()
+         {
+            Console.WriteLine("Lista de vehículos registrados:");
+            for (int i = 0; i < contadorVehiculos; i++)
+            {
+                Console.WriteLine($"Placa: {vehiculo[i, 0]}, Marca: {vehiculo[i, 1]}, Modelo: {vehiculo[i, 2]}, Año: {vehiculo[i, 3]}");
+            }
+
+            gestionarVehiculos();
+         }
+
+        static void ModificarVehiculo()
+        {
+            Console.WriteLine("Modificar información de un vehículo seleccionado.");
+
+        }
+
 
 
 
