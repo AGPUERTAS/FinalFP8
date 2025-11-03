@@ -10,7 +10,9 @@ namespace FinalFP8
     {
         static string[,] vehiculo = new string[20, 4];
         static int contadorVehiculos = 0;
-        
+        static string[,] cliente = new string[15, 4];
+        static int contadorcliente = 0;
+
 
         static void Main(string[] args)
         {
@@ -149,7 +151,7 @@ namespace FinalFP8
         static void gestionarClientes()
         {
             {
-                int respuesta = 1;
+                char respuesta = ' ';
 
                 Console.WriteLine("Gestion de clientes seleccionada.");
                 Console.WriteLine("1. Registrar un nuevo cliente (nombre, cedula, telefono)");
@@ -157,26 +159,86 @@ namespace FinalFP8
                 Console.WriteLine("3. Editar informacion del cliente)");
                 Console.WriteLine("4. Salir de Gestion de clientes (volver al menu principal)");
 
-                respuesta = Convert.ToInt32(Console.ReadLine());
+                respuesta = Convert.ToChar(Console.ReadLine());
 
-                if (respuesta == 1)
+                switch (respuesta)
                 {
-                    for (int i = 0; i < 15; i++)
-                    {
-                        for (int j = 0; j < 15; j++)
-                        {
-                            Console.WriteLine("Ingrese su nombre:");
-                            string nombre = Console.ReadLine();
-                            Console.WriteLine("Ingrese su cedula:");
-                            string cedula = Console.ReadLine();
-                            Console.WriteLine("Ingrese su numero de telefono:");
-                            string telefono = Console.ReadLine();
-                            Console.WriteLine($"Usuario registrado: {nombre} {cedula} {telefono}");
-                        }
+                    case '1':
+                        registrarCliente();
+                        break;
+
+                    case '2':
+                        ListarClientes();
+                        break;
+
+                    case '3':
+                        ModificarClientes();
+                        break;
+                        
+
                         gestionarClientes();
-                    }
+                    
                 }
             }
+        }
+
+        static void registrarCliente()
+        {
+            Console.WriteLine("Registrar un nuevo usuario seleccionado.");
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 15; j++)
+                {
+                    Console.WriteLine("Ingrese el nombre:");
+                   cliente[contadorcliente, 0] = Console.ReadLine(); 
+                    Console.WriteLine("Ingrese la cedula:");
+                   cliente[contadorcliente, 1] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el telefono:");
+                   cliente[contadorcliente, 2] = Console.ReadLine();
+
+                    contadorcliente++;
+
+                    Console.WriteLine("usuario registrado exitosamente.");
+                    Console.WriteLine("¿Desea registrar otro usuario? (s/n)");
+
+                    char respuesta = Convert.ToChar(Console.ReadLine());
+
+                    switch (respuesta)
+                    {
+                        case 's':
+                            registrarCliente();
+                            break;
+                        case 'n':
+                            gestionarClientes();
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Volviendo al menú de gestión de clientes.");
+                            gestionarClientes();
+                            break;
+                    }
+                }
+
+            }
+
+
+
+        }
+        static void ListarClientes()
+        {
+            Console.WriteLine("Lista de clientes registrados:");
+            for (int i = 0; i < contadorcliente; i++)
+            {
+                Console.WriteLine($"Nombre: {cliente[i, 0]}, Cedula: {cliente[i, 1]}, Telefono: {cliente[i, 2]}");
+            }
+          gestionarClientes();
+
+        }
+
+        static void ModificarClientes()
+        {
+            Console.WriteLine("Modificar información de un vehículo seleccionado.");
+
         }
 
         static void gestionarServiciosMantenimiento()
