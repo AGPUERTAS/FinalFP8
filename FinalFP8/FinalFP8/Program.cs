@@ -88,9 +88,9 @@ namespace FinalFP8
         {
             Console.WriteLine("Registrar un nuevo vehículo seleccionado.");
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 20; i++)
             {
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     Console.WriteLine("Ingrese la placa del vehículo:");
                     vehiculo[contadorVehiculos, 0] = Console.ReadLine();
@@ -139,10 +139,28 @@ namespace FinalFP8
             gestionarVehiculos();
          }
 
+
         static void ModificarVehiculo()
         {
             Console.WriteLine("Modificar información de un vehículo seleccionado.");
+            Console.WriteLine("Ingrese la placa del vehículo que desea modificar:");
+            string placa = Console.ReadLine();
 
+            for (int i = 0; i < contadorVehiculos; i++)
+            {
+                if (vehiculo[i, 0] == placa)
+                {
+                    Console.WriteLine("Ingrese la nueva marca del vehículo:");
+                    vehiculo[i, 1] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el nuevo modelo del vehículo:");
+                    vehiculo[i, 2] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el nuevo año del vehículo:");
+                    vehiculo[i, 3] = Console.ReadLine();
+                    Console.WriteLine("Información del vehículo actualizada exitosamente.");
+                    gestionarVehiculos();
+                    return;
+                }
+            }
         }
 
 
@@ -156,7 +174,7 @@ namespace FinalFP8
                 Console.WriteLine("Gestion de clientes seleccionada.");
                 Console.WriteLine("1. Registrar un nuevo cliente (nombre, cedula, telefono)");
                 Console.WriteLine("2. Ver lista de todos los clientes");
-                Console.WriteLine("3. Editar informacion del cliente)");
+                Console.WriteLine("3. Editar informacion del cliente");
                 Console.WriteLine("4. Salir de Gestion de clientes (volver al menu principal)");
 
                 respuesta = Convert.ToChar(Console.ReadLine());
