@@ -303,7 +303,23 @@ namespace FinalFP8
 
         static void ModificarClientes()
         {
-            Console.WriteLine("Modificar información de un vehículo seleccionado.");
+            Console.WriteLine("Modificar información del cliente seleccionado.");
+            Console.WriteLine("Ingrese la Nombre que desea modificar:");
+            string nombre = Console.ReadLine();
+
+            for (int i = 0; i < contadorcliente; i++)
+            {
+                if (cliente[i, 0] == nombre)
+                {
+                    Console.WriteLine("Ingrese la cedula:");
+                    cliente[i, 1] = Console.ReadLine();
+                    Console.WriteLine("Ingrese el telefono:");
+                    cliente[i, 2] = Console.ReadLine();
+                    Console.WriteLine("Información del cliente actualizada exitosamente.");
+                    gestionarClientes();
+                    return;
+                }
+            }
 
         }
 
