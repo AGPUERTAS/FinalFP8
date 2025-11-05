@@ -81,6 +81,12 @@ namespace FinalFP8
                case '3':
                     ModificarVehiculo();
                     break;
+                case '4':
+                    AsignarVehiculoACliente();
+                    break;
+                case '5':
+                    vehiculosDeCliente();
+                    break;
             }
         }
 
@@ -163,6 +169,45 @@ namespace FinalFP8
             }
         }
 
+        static void AsignarVehiculoACliente()
+        {
+            Console.WriteLine("Asignar vehículo a un cliente seleccionado.");
+            Console.WriteLine("Ingrese la placa del vehículo que desea asignar:");
+            string placa = Console.ReadLine();
+
+            Console.WriteLine("Ingrese la cédula del cliente al que desea asignar el vehículo:");
+            string cedula = Console.ReadLine();
+
+            for (int i = 0; i < contadorVehiculos; i++)
+            {
+                if (vehiculo[i, 0] == placa)
+                {
+                    for (int j = 0; j < contadorcliente; j++)
+                    {
+                        if (cliente[j, 1] == cedula)
+                        {
+                            Console.WriteLine($"Vehículo con placa {placa} asignado al cliente con cédula {cedula} exitosamente.");
+                            gestionarVehiculos();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        static void vehiculosDeCliente()
+        {
+            Console.WriteLine("Ver vehículos de un cliente específico seleccionado.");
+            Console.WriteLine("Ingrese la cédula del cliente:");
+            string cedula = Console.ReadLine();
+            Console.WriteLine($"Vehículos del cliente con cédula {cedula}:");
+            for (int i = 0; i < contadorVehiculos; i++)
+            {
+                cliente[i, 1] = cedula;
+                Console.WriteLine($"Placa: {vehiculo[i, 0]}, Marca: {vehiculo[i, 1]}, Modelo: {vehiculo[i, 2]}, Año: {vehiculo[i, 3]}");
+            }
+            gestionarVehiculos();
+        }
 
 
 
@@ -195,7 +240,10 @@ namespace FinalFP8
                         
 
                         gestionarClientes();
-                    
+                    case '4':
+                        menuPrincipal();
+                        break;
+
                 }
             }
         }
