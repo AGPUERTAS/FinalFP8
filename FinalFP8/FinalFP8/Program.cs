@@ -87,6 +87,9 @@ namespace FinalFP8
                 case '5':
                     vehiculosDeCliente();
                     break;
+                case '6':
+                    menuPrincipal();
+                    break;
             }
         }
 
