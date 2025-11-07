@@ -358,28 +358,28 @@ namespace FinalFP8
             }
 
         }
-         static void MantenimientoVehiculo()
-         {
-                Console.WriteLine("Mantenimiento de vehículo seleccionado.");
-                Console.WriteLine("Ingrese la placa del vehículo para registrar el servicio de mantenimiento:");
-                string placa = Console.ReadLine();
-                
-                for(int i = 0; i < contadorServicios; i++)
+        static void MantenimientoVehiculo()
+        {
+            Console.WriteLine("Mantenimiento de vehículo seleccionado.");
+            Console.WriteLine("Ingrese la placa del vehículo para registrar el servicio de mantenimiento:");
+            string placa = Console.ReadLine();
+
+            for (int i = 0; i < contadorServicios; i++)
+            {
+                if (vehiculo[i, 0] == placa)
                 {
-                    if (vehiculo[i, 0] == placa)
-                    {
-                        Console.WriteLine("Ingrese el tipo de servicio realizado:");
-                        string tipoServicio = Console.ReadLine();
-                        Console.WriteLine("Ingrese la fecha del servicio (dd/mm/yyyy):");
-                        string fechaServicio = Console.ReadLine();
-                        Console.WriteLine("Ingrese el costo del servicio:");
-                        string costoServicio = Console.ReadLine();
-                        Console.WriteLine($"Servicio de mantenimiento registrado para el vehículo con placa {placa}.");
-                        gestionarServiciosMantenimiento();
-                        return;
-                    }
+                    Console.WriteLine("Ingrese el tipo de servicio realizado:");
+                    string tipoServicio = Console.ReadLine();
+                    Console.WriteLine("Ingrese la fecha del servicio (dd/mm/yyyy):");
+                    string fechaServicio = Console.ReadLine();
+                    Console.WriteLine("Ingrese el costo del servicio:");
+                    string costoServicio = Console.ReadLine();
+                    Console.WriteLine($"Servicio de mantenimiento registrado para el vehículo con placa {placa}.");
+                    gestionarServiciosMantenimiento();
+                    return;
                 }
-         }
+            }
+        }
         static void HistorialMantenimiento()
         {
             Console.WriteLine("Historial de mantenimiento seleccionado.");
@@ -397,4 +397,15 @@ namespace FinalFP8
             }
 
         }
+        static void ResumenServicios()
+        {
+            Console.WriteLine("Resumen de servicios de todos los vehículos seleccionado.");
+            for (int i = 0; i < contadorServicios; i++)
+            {
+                Console.WriteLine($"Vehículo con placa {vehiculo[i, 0]}:");
+                // Aquí se mostraría el resumen de servicios
+            }
+            gestionarServiciosMantenimiento();
+        }
+    }
 }
