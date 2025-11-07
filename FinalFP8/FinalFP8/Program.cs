@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -12,6 +13,8 @@ namespace FinalFP8
         static int contadorVehiculos = 0;
         static string[,] cliente = new string[15, 4];
         static int contadorcliente = 0;
+        static string[,] servicios = new string[5, 4];
+        static int contadorServicios = 0;
 
 
         static void Main(string[] args)
@@ -21,7 +24,7 @@ namespace FinalFP8
 
         static void menuPrincipal()
         {
-            
+
             char opcion = ' ';
 
             Console.WriteLine("\n===================BIENVENIDO AL TALLER MECANICO================");
@@ -57,9 +60,9 @@ namespace FinalFP8
 
         static void gestionarVehiculos()
         {
-            
+
             char respuesta = ' ';
-            
+
             Console.WriteLine("Gestion de vehículos seleccionada.");
             Console.WriteLine("1. Registrar un nuevo vehículo (marca, modelo, placa, año)");
             Console.WriteLine("2. Ver lista de vehículos registrados");
@@ -71,14 +74,14 @@ namespace FinalFP8
             respuesta = Convert.ToChar(Console.ReadLine());
 
             switch (respuesta)
-            { 
-              case '1':
+            {
+                case '1':
                     registrarVehiculo();
                     break;
-              case '2':
+                case '2':
                     ListarVehiculos();
                     break;
-               case '3':
+                case '3':
                     ModificarVehiculo();
                     break;
                 case '4':
@@ -116,7 +119,7 @@ namespace FinalFP8
 
                     char respuesta = Convert.ToChar(Console.ReadLine());
 
-                    switch(respuesta)
+                    switch (respuesta)
                     {
                         case 's':
                             registrarVehiculo();
@@ -130,15 +133,15 @@ namespace FinalFP8
                             break;
                     }
                 }
-                
+
             }
 
-            
+
 
         }
 
-         static void ListarVehiculos()
-         {
+        static void ListarVehiculos()
+        {
             Console.WriteLine("Lista de vehículos registrados:");
             for (int i = 0; i < contadorVehiculos; i++)
             {
@@ -146,7 +149,7 @@ namespace FinalFP8
             }
 
             gestionarVehiculos();
-         }
+        }
 
 
         static void ModificarVehiculo()
@@ -240,9 +243,6 @@ namespace FinalFP8
                     case '3':
                         ModificarClientes();
                         break;
-                        
-
-                        gestionarClientes();
                     case '4':
                         menuPrincipal();
                         break;
@@ -260,11 +260,11 @@ namespace FinalFP8
                 for (int j = 0; j < 15; j++)
                 {
                     Console.WriteLine("Ingrese el nombre:");
-                   cliente[contadorcliente, 0] = Console.ReadLine(); 
+                    cliente[contadorcliente, 0] = Console.ReadLine();
                     Console.WriteLine("Ingrese la cedula:");
-                   cliente[contadorcliente, 1] = Console.ReadLine();
+                    cliente[contadorcliente, 1] = Console.ReadLine();
                     Console.WriteLine("Ingrese el telefono:");
-                   cliente[contadorcliente, 2] = Console.ReadLine();
+                    cliente[contadorcliente, 2] = Console.ReadLine();
 
                     contadorcliente++;
 
@@ -300,7 +300,7 @@ namespace FinalFP8
             {
                 Console.WriteLine($"Nombre: {cliente[i, 0]}, Cedula: {cliente[i, 1]}, Telefono: {cliente[i, 2]}");
             }
-          gestionarClientes();
+            gestionarClientes();
 
         }
 
@@ -328,7 +328,73 @@ namespace FinalFP8
 
         static void gestionarServiciosMantenimiento()
         {
+            char respuesta = ' ';
+
             Console.WriteLine("Gestion de servicios de mantenimiento seleccionada.");
+            Console.WriteLine("1. Registrar servicio de mantenimiento a un vehiculo");
+            Console.WriteLine("2. Ver historial de servicios de mantenimiento de un vehículo");
+            Console.WriteLine("3. Ver resumen de servicios de todos los vehiculos");
+            Console.WriteLine("4. Salir de Gestión de servicios de mantenimiento (volver al Menú principal)");
+
+            respuesta = Convert.ToChar(Console.ReadLine());
+
+            switch (respuesta)
+            {
+                case '1':
+                    Console.WriteLine("Registrar servicion de mantenimiento a un vehiculo seleccionado.");
+                    MantenimientoVehiculo();
+                    break;
+                case '2':
+                    Console.WriteLine("Ver historial de servicios de mantenimiento de un vehículo seleccionado.");
+                    gestionarServiciosMantenimiento();
+                    break;
+                case '3':
+                    Console.WriteLine("Ver resumen de servicios de todos los vehiculos seleccionado.");
+                    gestionarServiciosMantenimiento();
+                    break;
+                case '4':
+                    menuPrincipal();
+                    break;
+            }
+
         }
-    }
+         static void MantenimientoVehiculo()
+         {
+                Console.WriteLine("Mantenimiento de vehículo seleccionado.");
+                Console.WriteLine("Ingrese la placa del vehículo para registrar el servicio de mantenimiento:");
+                string placa = Console.ReadLine();
+                
+                for(int i = 0; i < contadorServicios; i++)
+                {
+                    if (vehiculo[i, 0] == placa)
+                    {
+                        Console.WriteLine("Ingrese el tipo de servicio realizado:");
+                        string tipoServicio = Console.ReadLine();
+                        Console.WriteLine("Ingrese la fecha del servicio (dd/mm/yyyy):");
+                        string fechaServicio = Console.ReadLine();
+                        Console.WriteLine("Ingrese el costo del servicio:");
+                        string costoServicio = Console.ReadLine();
+                        Console.WriteLine($"Servicio de mantenimiento registrado para el vehículo con placa {placa}.");
+                        gestionarServiciosMantenimiento();
+                        return;
+                    }
+                }
+         }
+        static void HistorialMantenimiento()
+        {
+            Console.WriteLine("Historial de mantenimiento seleccionado.");
+            Console.WriteLine("Ingrese la placa del vehículo para ver su historial de servicios:");
+            string placa = Console.ReadLine();
+            for (int i = 0; i < contadorServicios; i++)
+            {
+                if (vehiculo[i, 0] == placa)
+                {
+                    Console.WriteLine($"Historial de servicios para el vehículo con placa {placa}:");
+                    // Aquí se mostraría el historial de servicios
+                    gestionarServiciosMantenimiento();
+                    return;
+                }
+            }
+
+        }
 }
