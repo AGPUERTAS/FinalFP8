@@ -389,7 +389,7 @@ namespace FinalFP8
             {
                 if (vehiculo[i, 0] == placa)
                 {
-                    Console.WriteLine($"Historial de servicios para el vehículo con placa {placa}:");
+                      Console.WriteLine($"Historial de servicios para el vehículo con placa {placa}:");
                     // Aquí se mostraría el historial de servicios
                     gestionarServiciosMantenimiento();
                     return;
